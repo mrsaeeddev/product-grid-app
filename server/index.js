@@ -15,7 +15,6 @@ module.exports = () => {
 
     // Create 500 products
     for (let i = 0; i < 500; i++) {
-        console.log('Prodcys')
         data.products.push({
             id: getRandomInRange(0, 100000) + '-' + getRandomString(),
             size: getRandomInRange(12, 40),
