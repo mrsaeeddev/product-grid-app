@@ -1,4 +1,4 @@
-export function externSetValue(props) {
+export function getAllProducts(props) {
   fetch(
     `http://localhost:3000/products`,
     {
@@ -12,13 +12,12 @@ export function externSetValue(props) {
         error => console.log('An error occurred.', error)
       )
       .then(data =>
-        props.dispatch({ type: "SET_VALUE", data})
+        props.dispatch({ type: "GET_ALL_PRODUCTS", data})
       );
     
   }
 
   export function getProductsByProps(props, data) {
-    console.log("run")
     fetch(
       `http://localhost:3000/products?_sort=${data}`,
       {
@@ -32,6 +31,6 @@ export function externSetValue(props) {
           error => console.log('An error occurred.', error)
         )
         .then(data =>
-          props.dispatch({ type: "SET_PROP", data})
+          props.dispatch({ type: "SORT_PRODUCTS", data})
         );
   }

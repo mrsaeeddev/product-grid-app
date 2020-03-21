@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { StoreContext } from "./context/store/storeContext";
 
 const App = () => {
 	const { state, actions } = useContext(StoreContext);
-	const arrangeDaysDifference = (date) => {
+	const computeDaysDifference = (date) => {
     let date1 = new Date(date); 
     let date2 = new Date(); 
     let difference = Math.round((date2 - date1) / (1000 * 60 * 60 * 24));
@@ -18,28 +18,28 @@ const App = () => {
       result = date
     }
     return result
-  }
+	}
+	useEffect(() => {
+		actions.generalActions.allProductsAction();
+  }, [actions.generalActions.products]);
+
   return (
     <div>
-    {console.log(state.generalStates.count)}
-      <button onClick={() => { actions.generalActions.reset('price'); }}>
+      <button onClick={() => { actions.generalActions.productsSortAction('price'); }}>
         SORT BY PRICE
       </button>
-      <button onClick={() => { actions.generalActions.reset('id'); }}>
+      <button onClick={() => { actions.generalActions.productsSortAction('id'); }}>
         SORT BY ID
       </button>
-      <button onClick={() => { actions.generalActions.reset('size'); }}>
+      <button onClick={() => { actions.generalActions.productsSortAction('size'); }}>
         SORT BY SIZE
       </button>
-      <button onClick={() => { actions.generalActions.setValue(); }}>
-        GET ALL PRODUCTS
-      </button>
-      {state.generalStates.count && state.generalStates.count.map((c, index) => (
+      {state.generalStates.products && state.generalStates.products.map((c, index) => (
         <div key={index}>
           <div>
-            <h2>{c.face}</h2>
+            <h2 style={{fontSize:`${c.size}px`}}>{c.face}</h2>
       			<p>{'$'+c.price}</p>
-      			<p>{arrangeDaysDifference(c.date)}</p>
+      			<p>{computeDaysDifference(c.date)}</p>
           </div>
         </div>
       ))}

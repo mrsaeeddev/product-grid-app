@@ -4,30 +4,15 @@ export const generalStates = {
   
   export const generalReducer = (state, action) => {
     switch (action.type) {
-      case "FETCH_ALL_PRODUCTS":
+      case "GET_ALL_PRODUCTS":
         return {
           ...state,
-          count: state.count + 1
+          products: action.data,
         };
-      case "DECREMENT":
+      case "SORT_PRODUCTS":
         return {
           ...state,
-          count: state.count - 1
-        };
-      case "RESET":
-        return {
-          ...state,
-          count: 0
-        };
-      case "SET_VALUE":
-        return {
-          ...state,
-          count: action.data,
-        };
-      case "SET_PROP":
-        return {
-          ...state,
-          count: action.data,
+          products: action.data,
         };
       default:
         throw new Error("Unexpected action");
