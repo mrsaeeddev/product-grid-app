@@ -1,5 +1,4 @@
-export function externSetValue(props,data) {
-  
+export function externSetValue(props) {
   fetch(
     `http://localhost:3000/products`,
     {
@@ -10,16 +9,29 @@ export function externSetValue(props,data) {
     }
   ).then(
         response => response.json(),
-        // Do not use catch, because that will also catch
-        // any errors in the dispatch and resulting render,
-        // causing a loop of 'Unexpected batch number' errors.
-        // https://github.com/facebook/react/issues/6895
         error => console.log('An error occurred.', error)
       )
       .then(data =>
-        // We can dispatch many times!
-        // Here, we update the app state with the results of the API call.
         props.dispatch({ type: "SET_VALUE", data})
       );
     
+  }
+
+  export function getProductsByProps(props, data) {
+    console.log("run")
+    fetch(
+      `http://localhost:3000/products?_sort=${data}`,
+      {
+        method: "GET",
+        headers: new Headers({
+          Accept: "application/json"
+        })
+      }
+    ).then(
+          response => response.json(),
+          error => console.log('An error occurred.', error)
+        )
+        .then(data =>
+          props.dispatch({ type: "SET_PROP", data})
+        );
   }

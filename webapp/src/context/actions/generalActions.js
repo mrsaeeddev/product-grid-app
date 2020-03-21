@@ -1,4 +1,4 @@
-import { externSetValue } from '../services/'
+import { externSetValue, getProductsByProps } from '../services/'
 
 export const generalActions = (props) => {
     return {
@@ -8,12 +8,12 @@ export const generalActions = (props) => {
       decrement: () => {
         props.dispatch({ type: "DECREMENT" });
       },
-      reset: () => {
-        props.dispatch({ type: "RESET" });
+      reset: (data) => {
+        getProductsByProps(props,data);
       },
-      setValue: (data) => {
+      setValue: () => {
         // props.dispatch({ type: "SET_VALUE", data });
-        externSetValue(props,data);
+        externSetValue(props);
       }
     }
   }

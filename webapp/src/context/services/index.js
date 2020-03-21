@@ -1,1 +1,1 @@
-export { externSetValue } from './apis';
+export { externSetValue, getProductsByProps } from './apis';

@@ -24,6 +24,11 @@ export const generalStates = {
           ...state,
           count: action.data,
         };
+      case "SET_PROP":
+        return {
+          ...state,
+          count: action.data,
+        };
       default:
         throw new Error("Unexpected action");
     }
