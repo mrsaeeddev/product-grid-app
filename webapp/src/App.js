@@ -7,7 +7,6 @@ const App = () => {
     return Math.round(Math.random() * (1000 - 1) + 1);
   };
   return (
-    
     <div>
     {console.log(state.generalStates.count)}
       <button onClick={() => { actions.generalActions.increment(); }}>
@@ -22,7 +21,15 @@ const App = () => {
       <button onClick={() => { actions.generalActions.setValue(valueRandom()); }}>
         VALUE RANDOM
       </button>
-      <p>{state.generalStates.count && state.generalStates.count}</p>
+      {state.generalStates.count && state.generalStates.count.map((c, index) => (
+        <div key={index}>
+          <div>
+            <h2>{c.face}</h2>
+      			<p>{'$'+c.price}</p>
+      			<p>{c.date}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

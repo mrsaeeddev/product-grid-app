@@ -22,7 +22,7 @@ export const generalStates = {
       case "SET_VALUE":
         return {
           ...state,
-          count: action.data
+          count: action.data,
         };
       default:
         throw new Error("Unexpected action");
