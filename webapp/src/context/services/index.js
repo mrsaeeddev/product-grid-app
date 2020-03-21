@@ -1,0 +1,1 @@
+export { externSetValue } from './apis';
