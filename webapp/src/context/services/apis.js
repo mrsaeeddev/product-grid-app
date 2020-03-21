@@ -1,4 +1,5 @@
 export function getAllProducts(props) {
+  props.dispatch({type:"LOADING"});
   fetch(
     `http://localhost:3000/products`,
     {
@@ -18,6 +19,7 @@ export function getAllProducts(props) {
   }
 
   export function getProductsByProps(props, data) {
+    props.dispatch({type:"LOADING"});
     fetch(
       `http://localhost:3000/products?_sort=${data}`,
       {

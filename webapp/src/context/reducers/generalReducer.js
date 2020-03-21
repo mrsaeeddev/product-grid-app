@@ -1,5 +1,6 @@
 export const generalStates = {
-    count: 0
+    isLoading: true,
+    products : []
   }
   
   export const generalReducer = (state, action) => {
@@ -8,12 +9,19 @@ export const generalStates = {
         return {
           ...state,
           products: action.data,
+          isLoading: false,
         };
       case "SORT_PRODUCTS":
         return {
           ...state,
           products: action.data,
+          isLoading: false,
         };
+      case "LOADING": 
+        return {
+        products: [],
+        isLoading: true,
+      };
       default:
         throw new Error("Unexpected action");
     }

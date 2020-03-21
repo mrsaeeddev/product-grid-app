@@ -7,6 +7,9 @@ export const generalActions = (props) => {
       },
       allProductsAction: () => {
         getAllProducts(props);
+      },
+      setLoading: () => {
+        props.dispatch({ type : "LOADING" })
       }
     }
   }
