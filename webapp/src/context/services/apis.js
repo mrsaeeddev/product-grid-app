@@ -1,7 +1,7 @@
-export function getAllProducts(props) {
+export function getAllProducts(props,productsCount) {
   props.dispatch({type:"LOADING"});
   fetch(
-    `http://localhost:3000/products`,
+    `http://localhost:3000/products?_page=${productsCount}`,
     {
       method: "GET",
       headers: new Headers({

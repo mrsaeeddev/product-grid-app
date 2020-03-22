@@ -5,8 +5,8 @@ export const generalActions = (props) => {
       productsSortAction: (data) => {
         getProductsByProps(props,data);
       },
-      allProductsAction: () => {
-        getAllProducts(props);
+      allProductsAction: (productsCount) => {
+        getAllProducts(props,productsCount);
       },
       setLoading: () => {
         props.dispatch({ type : "LOADING" })
