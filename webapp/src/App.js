@@ -42,7 +42,7 @@ const App = () => {
 
   useEffect(()=>{
     if (state.generalStates.products !== undefined) {
-      setProducts(state.generalStates.products)
+      setProducts(prevState=>prevState.concat(state.generalStates.products))
     }
   },[state.generalStates.products])
 
@@ -82,7 +82,7 @@ const App = () => {
       			<p>{computeDaysDifference(c.date)}</p>
           </div>
         </div>
-      )) : "Loading" }
+      )) : products.length === 500 ? "End of catalogue" : "Loading" }
     </div>
   );
 };
