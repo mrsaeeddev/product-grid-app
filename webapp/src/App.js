@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useCallback, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "./context/store/storeContext";
 
 const App = () => {
@@ -7,6 +7,7 @@ const App = () => {
   const [isFetching, setIsFetching] = useState(false);
   const { state, actions } = useContext(StoreContext);
   
+  /* function to compute the days difference */
 	const computeDaysDifference = (date) => {
     let date1 = new Date(date); 
     let date2 = new Date(); 
@@ -27,6 +28,7 @@ const App = () => {
     return result
   }
 
+  /* logic to handle infinite scrolling */
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -34,33 +36,20 @@ const App = () => {
 
   function handleScroll() {
     if (!actions.generalActions.isLoading && window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-      setIsFetching(true)
       setProductsCount(productsCount=>productsCount+1)
     }
-    else {
-      setIsFetching(false)
-    } 
   }
 
-  useEffect(() => {
-    if (!isFetching) return;
-    actions.generalActions.allProductsAction(productsCount)
-  }, [isFetching]);
-
-  useEffect(() => {
+  useEffect(()=>{
     if (state.generalStates.products !== undefined) {
       setProducts(state.generalStates.products)
     }
-  })
+  },[state.generalStates.products])
 
-  const fetchProducts = useCallback(() => {
-      actions.generalActions.setLoading(true)
-      actions.generalActions.allProductsAction(0)
-  }, [actions.generalActions.products, actions.generalActions.isLoading]);
-  
-  useEffect(()=>{
-    fetchProducts();
-  },[fetchProducts])
+  useEffect(() => {
+    actions.generalActions.setLoading(true)
+    actions.generalActions.allProductsAction(productsCount)
+  }, [actions.generalActions.products,actions.generalActions.isLoading,productsCount]);
 
   const sortyByPrice = () => {
     actions.generalActions.productsSortAction('price');

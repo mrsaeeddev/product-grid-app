@@ -14,8 +14,7 @@ export function getAllProducts(props,productsCount) {
       )
       .then(data =>
         props.dispatch({ type: "GET_ALL_PRODUCTS", data})
-      );
-    
+      ); 
   }
 
   export function getProductsByProps(props, data) {
