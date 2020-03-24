@@ -5,6 +5,7 @@ const App = () => {
   const [productsCount, setProductsCount] = useState(1);
   const [products, setProducts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [imageUrl, setImageUrl] = useState([]);
   const { state, actions } = useContext(StoreContext);
   
   /* function to compute the days difference */
@@ -36,6 +37,7 @@ const App = () => {
 
   function handleScroll() {
     if (!actions.generalActions.isLoading && window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+      setIsFetching(true)
       setProductsCount(productsCount=>productsCount+1)
     }
   }
@@ -45,6 +47,15 @@ const App = () => {
       setProducts(prevState=>prevState.concat(state.generalStates.products))
     }
   },[state.generalStates.products])
+
+  useEffect(() => {
+    if (productsCount!==1 && productsCount%2==0)
+    {
+      let imageIndex = Math.floor(Math.random()*1000)
+      fetch(`http://localhost:3000/ads/?r=${imageIndex}`)
+        .then(results => setImageUrl(results.url))
+    }
+  }, [productsCount]);
 
   useEffect(() => {
     actions.generalActions.setLoading(true)
@@ -74,6 +85,7 @@ const App = () => {
       <button onClick={sortBySize}>
         SORT BY SIZE
       </button>
+    
       {products.length > 0 ? products.map((c, index) => (
         <div key={index}>
           <div>
@@ -81,6 +93,7 @@ const App = () => {
       			<p>{'$'+c.price}</p>
       			<p>{computeDaysDifference(c.date)}</p>
           </div>
+          {(index%19 === 0 && index!==0) && <img className="ad" src={imageUrl}/>}
         </div>
       )) : products.length === 500 ? "End of catalogue" : "Loading" }
     </div>
