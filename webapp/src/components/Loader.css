@@ -1,0 +1,98 @@
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.window-loader{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    padding-top: 70vh;
+    margin: 25px auto;
+    text-align: center;
+    -webkit-animation: parentRotate 3s linear infinite;
+    animation: parentRotate 3s linear infinite;
+}
+.item{
+    
+    height: 100px;
+    width: 50%;
+    position: absolute;
+    -webkit-transform-origin: right;
+    transform-origin: right;
+    top: 50%;
+    margin-top: -10px;
+    -webkit-animation: childRotate 2s ease infinite;
+    animation: childRotate 2s ease infinite;
+    
+}
+.item:before{
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: darkred;
+    border-radius: 50%;
+    position: relative;
+    left: -10px;
+}
+.item:nth-child(2):before{
+width: 18px;
+height: 18px;
+}
+
+.item:nth-child(3):before{
+width: 16px;
+height: 16px;
+}
+
+.item:last-child:before{
+width: 14px;
+height: 14px;
+}
+.item:first-child{
+    animation-delay:300ms;
+}
+.item:nth-child(2){
+    animation-delay: 400ms;
+}
+.item:nth-child(3){
+    animation-delay: 500ms;
+}
+
+.item:last-child{
+    animation-delay: 600ms;
+}
+@-webkit-keyframes childRotate{
+
+    80%{
+        transform:rotate(1turn);
+    }
+    100%{
+        transform:rotate(1turn);
+    }
+}
+@keyframes childRotate{
+
+    80%{
+        transform:rotate(1turn);
+    }
+    100%{
+        transform:rotate(1turn);
+    }
+}
+@-webkit-keyframes parentRotate{
+    
+
+    100%{
+        transform:rotate(1turn);
+    }
+}
+@keyframes parentRotate{
+    
+
+    100%{
+        transform:rotate(1turn);
+    }
+}

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "./context/store/storeContext";
+import Loader from './components/Loader';
 
 const App = () => {
   const [productsCount, setProductsCount] = useState(1);
@@ -63,14 +64,17 @@ const App = () => {
   }, [actions.generalActions.products,actions.generalActions.isLoading,productsCount]);
 
   const sortyByPrice = () => {
+    setProducts([])
     actions.generalActions.productsSortAction('price');
   }
 
   const sortById = () => {
+    setProducts([])
     actions.generalActions.productsSortAction('id');
   }
 
   const sortBySize = () => {
+    setProducts([])
     actions.generalActions.productsSortAction('size'); 
   }
 
@@ -93,9 +97,9 @@ const App = () => {
       			<p>{'$'+c.price}</p>
       			<p>{computeDaysDifference(c.date)}</p>
           </div>
-          {(index%19 === 0 && index!==0) && <img className="ad" src={imageUrl}/>}
+          {productsCount!==1 ? (index%20 === 0 && index!==0) && (imageUrl ? <img className="ad" src={imageUrl}/>: <Loader />):null }
         </div>
-      )) : products.length === 500 ? "End of catalogue" : "Loading" }
+      )) : products.length === 500 ? "End of catalogue" : <Loader/> }
     </div>
   );
 };
