@@ -100,7 +100,6 @@ Here you're sure to find a bargain on some of the finest ascii available to purc
     <div className="cards">
       {products.length > 0 ? products.map((c, index) => (
         <div id="cards" key={index}>
-          {console.log(index)}
           <div className="cards_item">
             <div className="card">
             <h2 className="card_image" style={{fontSize:`${c.size}px`}}>{c.face}</h2>
@@ -112,6 +111,7 @@ Here you're sure to find a bargain on some of the finest ascii available to purc
         </div>
       )) : products.length === 500 ? "End of catalogue" : <Loader /> }
       </div>
+      {isFetching && <h1>Loading more products</h1>}
     </div>
   );
 };
