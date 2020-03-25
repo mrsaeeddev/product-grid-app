@@ -80,6 +80,9 @@ const App = () => {
 
   return (
     <div>
+      <h2>Products Grid</h2>
+Here you're sure to find a bargain on some of the finest ascii available to purchase. Be sure to peruse our selection of ascii faces in an exciting range of sizes and prices.
+      <br/>
       <button onClick={sortyByPrice}>
         SORT BY PRICE
       </button>
