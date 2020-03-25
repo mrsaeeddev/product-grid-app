@@ -4,20 +4,16 @@
     box-sizing: border-box;
 }
 .window-loader{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    position: relative;
-    padding-top: 70vh;
-    margin: 25px auto;
     text-align: center;
+    padding-top: 50vh;
+    margin-left: 50%;
     -webkit-animation: parentRotate 3s linear infinite;
     animation: parentRotate 3s linear infinite;
 }
 .item{
-    
     height: 100px;
     width: 50%;
+    flex-grow: unset;
     position: absolute;
     -webkit-transform-origin: right;
     transform-origin: right;

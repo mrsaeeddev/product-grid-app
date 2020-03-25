@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StoreContext } from "./context/store/storeContext";
 import Loader from './components/Loader';
+import './App.css';
 
 const App = () => {
   const [productsCount, setProductsCount] = useState(1);
@@ -39,6 +40,7 @@ const App = () => {
   function handleScroll() {
     if (!actions.generalActions.isLoading && window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
       setIsFetching(true)
+      
       setProductsCount(productsCount=>productsCount+1)
     }
   }
@@ -52,6 +54,9 @@ const App = () => {
   useEffect(() => {
     if (productsCount!==1 && productsCount%2==0)
     {
+      if(imageUrl) {
+        setImageUrl(0)
+      }
       let imageIndex = Math.floor(Math.random()*1000)
       fetch(`http://localhost:3000/ads/?r=${imageIndex}`)
         .then(results => setImageUrl(results.url))
@@ -79,30 +84,34 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="main">
       <h2>Products Grid</h2>
 Here you're sure to find a bargain on some of the finest ascii available to purchase. Be sure to peruse our selection of ascii faces in an exciting range of sizes and prices.
       <br/>
-      <button onClick={sortyByPrice}>
+      <button className="btn" onClick={sortyByPrice}>
         SORT BY PRICE
       </button>
-      <button onClick={sortById}>
+      <button className="btn" onClick={sortById}>
         SORT BY ID
       </button>
-      <button onClick={sortBySize}>
+      <button className="btn" onClick={sortBySize}>
         SORT BY SIZE
       </button>
-    
+    <div className="cards">
       {products.length > 0 ? products.map((c, index) => (
-        <div key={index}>
-          <div>
-            <h2 style={{fontSize:`${c.size}px`}}>{c.face}</h2>
-      			<p>{'$'+c.price}</p>
-      			<p>{computeDaysDifference(c.date)}</p>
+        <div id="cards" key={index}>
+          {console.log(index)}
+          <div className="cards_item">
+            <div className="card">
+            <h2 className="card_image" style={{fontSize:`${c.size}px`}}>{c.face}</h2>
+            <div className="card_content"><p className="card_title">{'$'+c.price}</p>
+      			<p className="card_text">{computeDaysDifference(c.date)}</p></div>
+      			</div>
           </div>
-          {productsCount!==1 ? (index%20 === 0 && index!==0) && (imageUrl ? <img className="ad" src={imageUrl}/>: <Loader />):null }
+          {productsCount!==1 ? (index%19 === 0 && index!==0) && (imageUrl ? <img className="ad" src={imageUrl}/> : "Loading image..."):null }
         </div>
-      )) : products.length === 500 ? "End of catalogue" : <Loader/> }
+      )) : products.length === 500 ? "End of catalogue" : <Loader /> }
+      </div>
     </div>
   );
 };
