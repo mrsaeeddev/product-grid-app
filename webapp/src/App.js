@@ -37,8 +37,9 @@ const App = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
   function handleScroll() {
-    if (!actions.generalActions.isLoading && window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+    if (!actions.generalActions.isLoading && window.innerHeight + document.documentElement.scrollTop+5 >= document.documentElement.offsetHeight) {
       setIsFetching(true)
       setProductsCount(productsCount=>productsCount+1)
     }
