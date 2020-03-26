@@ -104,7 +104,6 @@ Here you're sure to find a bargain on some of the finest ascii available to purc
       			</div>
           </div>
         </div>
-        {/* {productsCount!==1 ? (index%19 === 0 && index!==0) && (imageUrl ? <div><img src={imageUrl}/></div> : "Loading image..."):null } */}
       </div>
       )) : products.length === 500 ? "End of catalogue" : <Loader /> }
       </div>
