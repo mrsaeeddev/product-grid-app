@@ -17,6 +17,11 @@ export const generalStates = {
           products: action.data,
           isLoading: false,
         };
+      case "GET_IMAGE":
+        return {
+          ...state,
+          image: action.image
+        }
       case "LOADING": 
         return {
         products: [],

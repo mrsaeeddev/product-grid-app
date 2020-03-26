@@ -52,7 +52,8 @@ img {
   background: lightgray;
 }
 
-.btn:hover {
+.btn:hover,.btn:focus {
+  outline: none;
   background-color: rgba(255, 255, 255, 0.12);
 }
 
@@ -71,6 +72,8 @@ img {
   background-color: white;
   min-width: 266px;
   display: flex;
+  margin-top: 10px;
+  flex-wrap: flex;
   max-width: 266px;
   height: 265px;
   border-radius: 0.25rem;
@@ -94,16 +97,13 @@ img {
 }
 
 #cards {
-    flex: 1;
-  
-    flex-grow: initial;
+    flex-grow: 0;
 }
 
 .ad {
-    align-self: center;
-    flex-basis: 100%;
-    flex: 0 0 100%; 
+    flex: 1 1 100%;
 }
+
 .card_image {
     margin: auto;
     max-width: 266px;

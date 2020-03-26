@@ -1,4 +1,4 @@
-import { getProductsByProps, getAllProducts } from '../services/'
+import { getProductsByProps, getAllProducts, getImage } from '../services/'
 
 export const generalActions = (props) => {
     return {
@@ -10,6 +10,9 @@ export const generalActions = (props) => {
       },
       setLoading: () => {
         props.dispatch({ type : "LOADING" })
+      },
+      getImage: () => {
+        getImage(props);
       }
     }
   }

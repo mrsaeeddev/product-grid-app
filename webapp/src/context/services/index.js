@@ -1,1 +1,1 @@
-export { getAllProducts, getProductsByProps } from './apis';
+export { getAllProducts, getProductsByProps,getImage } from './apis';
