@@ -16,7 +16,7 @@ I have completed sorting of products based on size, price and date properties.
 
 # Incomplete features
 
-- Ads feature : For this, I will fetch ad in an Effect. Now, I can check whether my product list array has an index which is a multiple of 20 in a separate Effect hook, something like `index%20===0`. If its true i can append the ad to products array otherwise not. 
+- Ads feature : I have showed an ad after every 10 products. The reason for this is that I am getting 10 products per page. So, I would prefer to change the API if there's a need to show 20 products. 
 
 # Structure
 

@@ -96,9 +96,9 @@ Here you're sure to find a bargain on some of the finest ascii available to purc
         <div key={index}>
         <div id="cards">
           <div className="cards_item">
-            <div className="card">
-            <h2 className="card_image" style={{fontSize:`${c.size}px`}}>{c.face}</h2>
-            <div className="card_content"><p className="card_title">{'$'+c.price}</p>
+            <div className={`card ${c.image && "card_background"}`}>
+            {c.image ? null : <h2 className="card_face" style={{fontSize:`${c.size}px`}}>{c.face}</h2>}
+            <div className="card_content"><p className="card_title">{c.image?"This is a sponsored ad":'$'+c.price}</p>
       			<p className="card_text">{computeDaysDifference(c.date)}</p></div>
             {c.image&& <img src={c.image} />}
       			</div>

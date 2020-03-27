@@ -11,9 +11,6 @@ export const generalActions = (props) => {
       setLoading: () => {
         props.dispatch({ type : "LOADING" })
       },
-      getImage: () => {
-        getImage(props);
-      }
     }
   }
   

@@ -104,7 +104,11 @@ img {
     flex: 1 1 100%;
 }
 
-.card_image {
+.card_background {
+  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+}
+
+.card_face {
     margin: auto;
     max-width: 266px;
     max-height: 200px;
